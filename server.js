@@ -13,11 +13,19 @@ console.log("MONGO_URI:", process.env.MONGO_URI);
 const app = express();
 
 // Middleware
-app.use(express.json());
+require("dotenv").config();
+
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+
 app.use(cors({
-  origin: "https://task-manager-frontend-lime-one.vercel.app/",
+  origin: "https://task-manager-frontend-lime-one.vercel.app",
   credentials: true
 }));
+
+app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
